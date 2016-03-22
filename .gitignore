@@ -9,3 +9,7 @@
 build/
 nbproject
 vendor
+
+var/log/*
+var/tmp/*
+

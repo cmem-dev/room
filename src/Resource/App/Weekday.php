@@ -4,6 +4,7 @@ namespace Cmem\Room\Resource\App;
 
 use BEAR\Resource\ResourceObject;
 use Psr\Log\LoggerInterface;
+use Cmem\Room\Annotation\BenchMark;
 
 class Weekday extends ResourceObject
 {
@@ -14,6 +15,9 @@ class Weekday extends ResourceObject
         $this->logger = $logger;
     }
 
+    /**
+     * @BenchMark
+     */
     public function onGet($year, $month, $day)
     {
         $date = \DateTime::createFromFormat('Y-m-d', "$year-$month-$day");

@@ -5,7 +5,11 @@ namespace Cmem\Room\Resource\App;
 use BEAR\Resource\ResourceObject;
 use Ray\CakeDbModule\DatabaseInject;
 use Ray\CakeDbModule\Annotation\Transactional;
+use BEAR\RepositoryModule\Annotation\Cacheable;
 
+/**
+ * @Cacheable
+ */
 class Todo extends ResourceObject
 {
     use DatabaseInject;
@@ -38,6 +42,21 @@ class Todo extends ResourceObject
         $this->headers['Location'] = '/todo/?id=' . $statement->lastInsertId();
         // status code
         $this->code = 201;
+
+        return $this;
+    }
+
+    /**
+     * @Transactional
+     */
+    public function onPut($id, $todo)
+    {
+        $this->db->update(
+            'todo',
+            ['todo' => $todo],
+            ['id' => (int) $id]
+        );
+        $this->headers['location'] = '/todo/?id=' . $id;
 
         return $this;
     }

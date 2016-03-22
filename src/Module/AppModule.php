@@ -11,6 +11,7 @@ use Ray\Di\Scope;
 use Cmem\Room\Annotation\BenchMark;
 use Cmem\Room\Interceptor\BenchMarker;
 use Ray\CakeDbModule\CakeDbModule;
+use Ray\AuraSqlModule\AuraSqlModule;
 
 class AppModule extends AbstractModule
 {
@@ -36,5 +37,7 @@ class AppModule extends AbstractModule
             'database' => dirname(dirname(__DIR__)) . '/var/db/todo.sqlite3'
         ];
         $this->install(new CakeDbModule($dbConfig));
+        $dbConfig = 'sqlite:' . dirname(dirname(__DIR__)). '/var/db/post.sqlite3';
+        $this->install(new AuraSqlModule($dbConfig));
     }
 }

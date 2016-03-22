@@ -13,3 +13,4 @@ vendor
 var/log/*
 var/tmp/*
 
+composer.lock

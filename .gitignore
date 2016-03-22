@@ -12,5 +12,5 @@ vendor
 
 var/log/*
 var/tmp/*
-
+var/db/*
 composer.lock

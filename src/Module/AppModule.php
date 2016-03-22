@@ -5,6 +5,7 @@ namespace Cmem\Room\Module;
 use BEAR\Package\PackageModule;
 use Ray\Di\AbstractModule;
 use josegonzalez\Dotenv\Loader as Dotenv;
+use BEAR\Package\Provide\Router\AuraRouterModule;
 
 class AppModule extends AbstractModule
 {
@@ -18,5 +19,6 @@ class AppModule extends AbstractModule
             'toEnv' => true
         ]);
         $this->install(new PackageModule);
+        $this->override(new AuraRouterModule);
     }
 }

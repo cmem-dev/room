@@ -10,6 +10,7 @@ use Psr\Log\LoggerInterface;
 use Ray\Di\Scope;
 use Cmem\Room\Annotation\BenchMark;
 use Cmem\Room\Interceptor\BenchMarker;
+use Ray\CakeDbModule\CakeDbModule;
 
 class AppModule extends AbstractModule
 {
@@ -30,5 +31,10 @@ class AppModule extends AbstractModule
             $this->matcher->annotatedWith(BenchMark::class),
             [BenchMarker::class]
         );
+        $dbConfig = [
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'database' => dirname(dirname(__DIR__)) . '/var/db/todo.sqlite3'
+        ];
+        $this->install(new CakeDbModule($dbConfig));
     }
 }
